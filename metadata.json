@@ -1,0 +1,5 @@
+{
+  "name": "News Today",
+  "description": "A modern news application fetching the latest stories using Gemini and Google Search.",
+  "requestFramePermissions": []
+}
