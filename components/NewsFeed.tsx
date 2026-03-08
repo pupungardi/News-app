@@ -15,14 +15,15 @@ const SOURCES = [
   { name: 'CNBC Indonesia', endpoint: 'cnbc-news' },
   { name: 'Republika', endpoint: 'republika-news' },
   { name: 'Tempo', endpoint: 'tempo-news' },
-  { name: 'Antara', endpoint: 'antara-news' },
+  { name: 'Antara News', endpoint: 'antara-news/terkini' },
+  { name: 'Tribun News', endpoint: 'tribun-news' },
   { name: 'Kumparan', endpoint: 'kumparan-news' },
   { name: 'Okezone', endpoint: 'okezone-news' },
-  { name: 'BBC', endpoint: 'bbc-news' },
-  { name: 'Tribun', endpoint: 'tribun-news' },
-  { name: 'Vice', endpoint: 'vice' },
+  { name: 'BBC News', endpoint: 'bbc-news' },
+  { name: 'Jawa Pos', endpoint: 'jawa-pos/terbaru' },
+  { name: 'Vice Indonesia', endpoint: 'vice' },
   { name: 'Suara', endpoint: 'suara' },
-  { name: 'VOA', endpoint: 'voa' },
+  { name: 'VOA Indonesia', endpoint: 'voa' },
 ];
 
 interface NewsArticle {
@@ -92,8 +93,9 @@ export default function NewsFeed() {
             month: 'short',
             year: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
-          });
+            minute: '2-digit',
+            timeZone: 'Asia/Jakarta'
+          }) + ' WIB';
         }
 
         return {
@@ -143,7 +145,13 @@ export default function NewsFeed() {
   }, [loading, loadingMore, viewMode, searchQuery, loadMoreNews]);
 
   useEffect(() => {
-    setCurrentDate(new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+    setCurrentDate(new Date().toLocaleDateString('id-ID', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric',
+      timeZone: 'Asia/Jakarta'
+    }));
     
     // Load data from localStorage
     const savedFavorites = localStorage.getItem('news-favorites');
